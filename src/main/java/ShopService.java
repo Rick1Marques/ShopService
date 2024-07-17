@@ -29,4 +29,13 @@ public class ShopService {
         }
         return null;
     }
+
+    public void updateOrder(String orderId, OrderStatus status) {
+        Order order = orderRepo.getOrderById(orderId);
+        orderRepo.removeOrder(orderId);
+
+        Order updatedOrder = order.withStatus(status);
+        orderRepo.addOrder(updatedOrder);
+
+    }
 }
